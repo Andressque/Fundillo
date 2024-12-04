@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Registro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #1d1d1d;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .header {
+            background-color: #222;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            color: #00d500;
+        }
+
+        .header-options {
+            display: flex;
+            gap: 20px;
+        }
+
+            .header-options .button {
+                text-decoration: none;
+                color: #fff;
+                background-color: #00d500;
+                padding: 10px 20px;
+                border-radius: 5px;
+                font-size: 16px;
+                transition: background-color 0.3s ease;
+            }
+
+                .header-options .button:hover {
+                    background-color: #00b300;
+                }
+
+            .header-options .button-yellow {
+                background-color: #f7d800;
+                color: #222;
+            }
+
+                .header-options .button-yellow:hover {
+                    background-color: #e6c700;
+                }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            flex-grow: 1;
+        }
+
+        .form-container {
+            background-color: #292929;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 50%;
+            color: #fff;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-container input, .form-container select, .form-container button {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #444;
+            font-size: 16px;
+            background-color: #333;
+            color: white;
+        }
+
+        .form-container button {
+            background-color: #00d500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-container button:hover {
+            background-color: #00b300;
+        }
+
+        /* Estilos del footer */
+        footer {
+            background-color: #222;
+            color: white;
+            padding: 20px 50px;
+            text-align: center;
+            font-size: 14px;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: auto;
+        }
+
+        footer a {
+            color: #00d500;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">Fundibet</div>
+        <div class="header-options">
+            <a href="#" class="button">Apuestas</a>
+            <a href="#" class="button">Configuración</a>
+            <a href="#" class="button">Registro</a>
+            <a href="iniciodesesion.html" class="button button-yellow">Iniciar Sesión</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Formulario dentro del contenedor principal -->
+        <div class="form-container">
+            <h2>Formulario de Registro</h2>
+            <form action="#" method="POST">
+                <input type="text" name="nombre" placeholder="Nombre Completo" required>
+                <input type="email" name="email" placeholder="Correo Electrónico" required>
+                <input type="tel" name="telefono" placeholder="Teléfono" required>
+                <input type="text" name="direccion" placeholder="Dirección de Envío" required>
+                <input type="text" name="nombre_usuario" placeholder="Nombre de Usuario" required>
+                <input type="password" name="contrasena" placeholder="Contraseña" required>
+                <input type="password" name="confirmar_contrasena" placeholder="Confirmar Contraseña" required>
+                
+                <!-- Campos adicionales -->
+                <input type="text" name="ciudad" placeholder="Ciudad de Residencia" required>
+                <select name="genero" required>
+                    <option value="" disabled selected>Seleccione su Género</option>
+                    <option value="masculino">Masculino</option>
+                    <option value="femenino">Femenino</option>
+                    <option value="otro">Otro</option>
+                </select>
+                <select name="pais" required>
+                    <option value="" disabled selected>Seleccione su País</option>
+                    <option value="colombia">Colombia</option>
+                    <option value="mexico">México</option>
+                    <option value="argentina">Argentina</option>
+                    <!-- Agrega más opciones según sea necesario -->
+                </select>
+                <input type="text" name="ocupacion" placeholder="Ocupación" required>
+                <select name="tipo_documento" required>
+                    <option value="" disabled selected>Tipo de Documento</option>
+                    <option value="cedula">Cédula</option>
+                    <option value="pasaporte">Pasaporte</option>
+                    <option value="tarjeta_identidad">Tarjeta de Identidad</option>
+                </select>
+                <input type="text" name="numero_documento" placeholder="Número de Documento" required>
+                <input type="date" name="fecha_nacimiento" placeholder="Fecha de Nacimiento" required>
+                <input type="text" name="nacionalidad" placeholder="Nacionalidad" required>
+                <input type="text" name="referencia" placeholder="Referencia o Código de Amigo" required>
+
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Fundibet. Todos los derechos reservados.</p>
+        <p><a href="#">Política de Privacidad</a> | <a href="#">Términos y Condiciones</a></p>
+    </footer>
+</body>
+</html>

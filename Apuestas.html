@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apuestas de Fútbol</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #1d1d1d;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #222;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            color: #00d500;
+        }
+
+        .header-options {
+            display: flex;
+            gap: 20px;
+        }
+
+            .header-options .button {
+                text-decoration: none;
+                color: #fff;
+                background-color: #00d500;
+                padding: 10px 20px;
+                border-radius: 5px;
+                font-size: 16px;
+                transition: background-color 0.3s ease;
+            }
+
+                .header-options .button:hover {
+                    background-color: #00b300;
+                }
+
+            .header-options .button-yellow {
+                background-color: #f7d800;
+                color: #222;
+            }
+
+                .header-options .button-yellow:hover {
+                    background-color: #e6c700;
+                }
+
+        .container {
+            display: flex;
+            gap: 30px;
+            padding: 30px;
+            flex-grow: 1;
+        }
+
+        .sidebar {
+            background-color: #292929;
+            padding: 20px;
+            border-radius: 10px;
+            width: 200px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+            .sidebar ul {
+                list-style: none;
+                padding: 0;
+            }
+
+                .sidebar ul li {
+                    font-size: 18px;
+                    padding: 10px;
+                    border-bottom: 1px solid #444;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease;
+                }
+
+                    .sidebar ul li:hover {
+                        background-color: #00d500;
+                    }
+
+        .main-content {
+            flex-grow: 1;
+        }
+
+        .match-container {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #292929;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .match-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .team {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .bet-button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #444;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .bet-button:hover {
+                background-color: #00d500;
+            }
+
+        .options-container {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #333;
+            border-radius: 5px;
+        }
+
+        .option-button {
+            padding: 10px 15px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #444;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            text-align: center;
+        }
+
+            .option-button:hover {
+                background-color: #00d500;
+            }
+
+            .option-button.selected {
+                background-color: #00d500;
+                color: white;
+            }
+
+        footer {
+            background-color: #111111;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+            footer a {
+                color: #2bc321;
+                text-decoration: none;
+                margin: 0 10px;
+            }
+
+                footer a:hover {
+                    text-decoration: underline;
+                }
+    </style>
+    <script>
+        function toggleOptions(matchId) {
+            const options = document.getElementById(`options-${matchId}`);
+            options.style.display = options.style.display === "block" ? "none" : "block";
+        }
+
+        function selectOption(button, matchId) {
+            // Quitar la clase "selected" de todos los botones en este partido
+            const optionButtons = document.querySelectorAll(`#options-${matchId} .option-button`);
+            optionButtons.forEach(btn => btn.classList.remove("selected"));
+
+            // Añadir la clase "selected" al botón actual
+            button.classList.add("selected");
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">Fundibet</div>
+        <div class="header-options">
+            <a href="#" class="button">Apuestas</a>
+            <a href="#" class="button">Configuración</a>
+            <a href="#" class="button">Registro</a>
+            <a href="iniciodesesion.html" class="button button-yellow">Iniciar Sesión</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <ul>
+                <li>Ligas Principales</li>
+                <li>Copa América</li>
+                <li>Euro 2024</li>
+                <li>UEFA Champions League</li>
+                <li>NBA</li>
+                <li>Otros</li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>Partidos de Fútbol</h1>
+            <div class="matches">
+                <script>
+                    const partidos = [
+                        { local: "Real Madrid", visitante: "Barcelona", liga: "La Liga", cuotas: [2.0, 3.5, 3.0] },
+                        { local: "Manchester United", visitante: "Liverpool", liga: "Premier League", cuotas: [2.5, 3.4, 2.8] },
+                        { local: "Bayern Múnich", visitante: "Borussia Dortmund", liga: "Bundesliga", cuotas: [1.8, 3.6, 3.4] },
+                        { local: "Juventus", visitante: "Inter", liga: "Serie A", cuotas: [2.2, 3.3, 3.1] },
+                        { local: "PSG", visitante: "Marseille", liga: "Ligue 1", cuotas: [1.9, 3.7, 3.2] },
+                        { local: "Atlético Madrid", visitante: "Valencia", liga: "La Liga", cuotas: [1.7, 3.5, 4.0] },
+                        { local: "Chelsea", visitante: "Tottenham", liga: "Premier League", cuotas: [2.1, 3.6, 3.2] },
+                        { local: "Borussia M'gladbach", visitante: "Bayer Leverkusen", liga: "Bundesliga", cuotas: [2.3, 3.4, 3.0] },
+                        { local: "Milan", visitante: "Roma", liga: "Serie A", cuotas: [1.8, 3.3, 3.5] },
+                        { local: "Lyon", visitante: "Monaco", liga: "Ligue 1", cuotas: [2.0, 3.6, 3.4] },
+                        { local: "Independiente Santa Fe", visitante: "Atlético Nacional", liga: "Liga Colombiana", cuotas: [2.3, 3.2, 3.6] },
+                        { local: "Millonarios", visitante: "Deportivo Cali", liga: "Liga Colombiana", cuotas: [2.0, 3.4, 3.3] },
+                        { local: "América de Cali", visitante: "Junior", liga: "Liga Colombiana", cuotas: [2.1, 3.5, 3.2] },
+                        { local: "Once Caldas", visitante: "Tolima", liga: "Liga Colombiana", cuotas: [2.4, 3.0, 3.5] },
+                        { local: "Santa Fe", visitante: "Envigado", liga: "Liga Colombiana", cuotas: [2.5, 3.4, 3.1] },
+                        { local: "Alianza Petrolera", visitante: "Pereira", liga: "Liga Colombiana", cuotas: [2.3, 3.1, 3.2] },
+                        { local: "Atlético Bucaramanga", visitante: "Cúcuta", liga: "Liga Colombiana", cuotas: [2.0, 3.6, 3.4] },
+                        { local: "Patriotas", visitante: "La Equidad", liga: "Liga Colombiana", cuotas: [2.2, 3.3, 3.6] },
+                        { local: "Atlético Huila", visitante: "Rionegro Águilas", liga: "Liga Colombiana", cuotas: [2.1, 3.5, 3.0] },
+                        { local: "Cúcuta Deportivo", visitante: "Bucaramanga", liga: "Liga Colombiana", cuotas: [2.2, 3.0, 3.4] }
+                    ];
+
+                    partidos.forEach((partido, index) => {
+                        const matchId = `match-${index}`;
+                        document.write(`
+                                            <div class="match-container">
+                                                <div class="match-header">
+                                                    <span class="team">${partido.local} vs ${partido.visitante} - ${partido.liga}</span>
+                                                    <button class="bet-button" onclick="toggleOptions('${matchId}')">Apuesta ya</button>
+                                                </div>
+                                                <div class="options-container" id="options-${matchId}">
+                                                    <button class="option-button" onclick="selectOption(this, '${matchId}')">Local - Cuota: ${partido.cuotas[0]}</button>
+                                                    <button class="option-button" onclick="selectOption(this, '${matchId}')">Empate - Cuota: ${partido.cuotas[1]}</button>
+                                                    <button class="option-button" onclick="selectOption(this, '${matchId}')">Visitante - Cuota: ${partido.cuotas[2]}</button>
+                                                </div>
+                                            </div>
+                                        `);
+                    });
+                </script>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div>© 2024 Fundibet</div>
+        <div>
+            <a href="quienessomos.html">¿Quiénes somos?</a> |
+            <a href="ayuda.html">Ayuda</a> |
+            <a href="configuracion.html">Configuración</a> |
+            <a href="protecciondedatos.html">Política de protección de datos</a>
+        </div>
+    </footer>
+</body>
+</html>
